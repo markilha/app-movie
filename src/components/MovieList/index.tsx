@@ -34,8 +34,8 @@ export default function MovieList() {
     }
 
     return () => {
-      if (lastUserRef.current && observer.current) {
-        observer.current.unobserve(lastUserRef.current);
+      if (observer.current) {
+        observer.current.disconnect();
       }
     };
   }, [movies, hasMore, isSearching]);
@@ -87,12 +87,12 @@ export default function MovieList() {
       }
       setIsLoading(false);
     } catch (error) {
-      console.error('Erro ao buscar filmes:', error.message);
+      console.error('Erro ao buscar filmes:', error);
       setIsLoading(false);
     }
   };
 
-  const searchMovie = async (query) => {
+  const searchMovie = async (query:string) => {
     try {
       const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
         params: {
@@ -106,12 +106,12 @@ export default function MovieList() {
       return movies;
 
     } catch (error) {
-      console.error('Erro ao buscar filmes:', error.message);
+      console.error('Erro ao buscar filmes:', error);
       return [];
     }
   };
 
-  const handleSearch = async (event) => {
+  const handleSearch = async (event:any) => {
     event.preventDefault();
     setIsSearching(true);
     setMovies([]);
