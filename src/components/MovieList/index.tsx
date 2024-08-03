@@ -14,7 +14,7 @@ export default function MovieList() {
   const [isSearching, setIsSearching] = useState<boolean>(false);
 
   const lastUserRef = useRef<HTMLDivElement>(null);
-  const observer = useRef<IntersectionObserver>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
   const [query, setQuery] = useState('');
 
   useEffect(() => {   
