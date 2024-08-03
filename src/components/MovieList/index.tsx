@@ -81,7 +81,7 @@ export default function MovieList() {
         setHasMore(false);
       } else {
         setMovies((prevMovies) => {
-          const uniqueMovies = data.filter(movie => !prevMovies?.some(m => m.id === movie.id));
+          const uniqueMovies = data.filter((movie:any) => !prevMovies?.some(m => m.id === movie.id));
           return [...prevMovies, ...uniqueMovies];
         });
       }
